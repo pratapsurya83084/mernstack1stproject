@@ -1,7 +1,7 @@
 
 
 
-import { Cart } from "../models/cart.js";
+import { Cart } from "../models/Cart.js";
 //middlwaeredd
 export const addToCart = async (req, res) => {
   try {
