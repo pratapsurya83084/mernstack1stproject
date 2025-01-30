@@ -16,17 +16,15 @@ const app = express();
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// ✅ Step 1: Allow CORS for All Origins (Temporary Fix)
-app.use(cors({ origin: "*", credentials: true }));
-
-// ✅ Step 2: Manually Set CORS Headers for Extra Safety
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // Temporarily allow all
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
-
+// CORS setup for allowing the frontend to communicate with the backend
+app.use(
+  cors({
+    origin: "https://mernwebapplication.netlify.app/", // Replace with your frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // To send credentials (cookies, tokens)
+    allowedHeaders: ["Content-Type", "Auth"],
+  })
+);
 
 // Configure session middleware
 app.use(
