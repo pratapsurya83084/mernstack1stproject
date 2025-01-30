@@ -40,9 +40,9 @@ app.use(
 
 app.use(bodyParser.json());
 //home testing route
-app.get("/", (req, res) => {
-  res.json({ message: "this  is home route" });
-});
+// app.get("/", (req, res) => {
+//   res.json({ message: "this  is home route" });
+// });
 
 //user Router
 app.use("/api/user", userRouter);
