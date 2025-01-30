@@ -16,40 +16,15 @@ const app = express();
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// CORS setup for allowing the frontend to communicate with the backend
-const allowedOrigins = [
-  "http://localhost:5173",  // Localhost for development
-  "https://ecomerce.netlify.app" // Netlify deployed frontend
-];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("CORS policy does not allow this origin"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allow cookies & authentication headers
-    allowedHeaders: ["Content-Type", "Auth"],
-  })
-);
-
 // ✅ Step 1: Allow CORS for All Origins (Temporary Fix)
 app.use(cors({ origin: "*", credentials: true }));
 
-// ✅ Manually Set CORS Headers for Extra Safety
+// ✅ Step 2: Manually Set CORS Headers for Extra Safety
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Origin", "*"); // Temporarily allow all
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
-});
-// ✅ Step 3: Add Preflight OPTIONS Request Handling
-app.options("*", (req, res) => {
-  res.status(200).send();
 });
 
 
