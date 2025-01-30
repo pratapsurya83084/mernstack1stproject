@@ -37,6 +37,21 @@ app.use(
   })
 );
 
+// ✅ Step 1: Allow CORS for All Origins (Temporary Fix)
+app.use(cors({ origin: "*", credentials: true }));
+
+// ✅ Manually Set CORS Headers for Extra Safety
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+// ✅ Step 3: Add Preflight OPTIONS Request Handling
+app.options("*", (req, res) => {
+  res.status(200).send();
+});
+
 
 // Configure session middleware
 app.use(
