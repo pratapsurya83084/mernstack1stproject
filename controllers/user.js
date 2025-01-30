@@ -42,18 +42,11 @@ export const Userlogin = async (req, res) => {
     if (!validPassword)
       return res.json({ message: "invalid creadential", success: false });
 
-    const token = jwt.sign(
-      { userId: user._id },
-      "#$#$#(*$",
-     
-      { expiresIn:'1d'}
-   
-  );
-
-
-
-
+    const token = jwt.sign( { userId: user._id }, "#$#$#(*$", { expiresIn:'30d'});
+    req.session.token = token; 
+      
     res.json({name:`${user.name}`,email:`${user.email}`, message: `welcome ${user.name}`, token, sucess: true });
+   
   } catch (error) {
     return res.json({
       message: error.message,
@@ -71,12 +64,7 @@ export const allUsers = async (req, res) => {
   }
 };
 
-//get profile User
-// export const profile=async(req,res)=>{
-//   //return current login user
-//  res.json({ user: req.user})
 
-// }
 export const profile = async (req, res, next) => {
   try {
       const user = await User.findById(req.userId);
@@ -88,3 +76,27 @@ export const profile = async (req, res, next) => {
       next(error); // Pass error to the error-handling middleware
   }
 };
+
+
+
+
+//delete user by id
+export const  deleteUserByid=async (req,res)=>{
+const userid=req.params.id
+console.log(userid);
+
+const usedelete=await User.findOneAndDelete({_id:userid})
+if(!usedelete){
+res.json({
+  message:"user not found",
+  success:false
+})
+}else{
+  res.json({
+    message:"user deleted successFully",
+    success:true,
+    user:userid
+  })
+}
+
+}

@@ -1,0 +1,131 @@
+[33mcommit 7705286d8468f08aa31db6235e4461d22d4c88af[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Fri Dec 20 20:27:39 2024 +0530
+
+    user address get ,post and designe order summary page
+
+[33mcommit 44b093134f04b26e84d92dae5790d9035391b802[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Wed Dec 18 23:30:11 2024 +0530
+
+    checkout modal add
+
+[33mcommit d6733f6d13cba80cb8d73e85b569745878a3a31f[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Wed Dec 18 22:40:55 2024 +0530
+
+    add reload
+
+[33mcommit 5f8aeb479aa3861940820d01a3886715741e6914[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Wed Dec 18 00:10:08 2024 +0530
+
+    removefromCartitem,qtydec,clearCart
+
+[33mcommit c172806afe74901dbb132768372fc69d6a6baa66[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Wed Dec 11 20:38:12 2024 +0530
+
+    add to cart and display on frontend
+
+[33mcommit a95dafaf4da156ccfe97af43d74ea3675d4cc828[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Tue Dec 10 17:51:13 2024 +0530
+
+    show  cart product in cart
+
+[33mcommit 8c33297695fdcc7ccbab2cf5fcb977ba8bf18afb[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Tue Dec 10 15:57:39 2024 +0530
+
+    add to cart successfully with verify token
+
+[33mcommit a0bac6887e171ea1c56f9e99dc79545c19a4cdbf[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Mon Dec 9 15:25:58 2024 +0530
+
+    profile token send for auth middleware successfully
+
+[33mcommit f5b4bd66329e525ea8af7e3d4c3ad20b22b6c8ff[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Mon Dec 9 00:38:58 2024 +0530
+
+    yet to verify jwt token
+
+[33mcommit 45cb3cc5f0030c1b851a63eb8600cd5d621af046[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Sun Dec 8 13:41:11 2024 +0530
+
+    add profile user
+
+[33mcommit fae3341498bdfe2ecc90e58116870fa2387cc215[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Sun Dec 8 02:11:02 2024 +0530
+
+    add token localstorage
+
+[33mcommit ec1ccb02063fe604523218e7048650353486505e[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Sat Dec 7 01:45:57 2024 +0530
+
+    add api register /signup user
+
+[33mcommit d4cca8feec4689b9fdc98a2b0bd76ffcfd785469[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Fri Dec 6 19:20:16 2024 +0530
+
+    add filter search
+
+[33mcommit d334da6eb9adfd89b54418fb292e804eb4e399d3[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Fri Dec 6 15:25:32 2024 +0530
+
+    singlepage
+
+[33mcommit ffc2fc2549fac3ab824caf15964fb738a3c548f2[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Thu Dec 5 23:36:38 2024 +0530
+
+    fetch product api
+
+[33mcommit 6df92f2b3007d97b2320938ed467403beb2bfac0[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Thu Dec 5 21:50:35 2024 +0530
+
+    make a user profile if user logged
+
+[33mcommit 9c58414e7958fec357281fa9733c845582f7db3d[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Thu Dec 5 12:46:47 2024 +0530
+
+    address and token generate
+
+[33mcommit bc548fe9b133fd4f8dce3d8847dbcc423bb78c1a[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Wed Dec 4 20:46:54 2024 +0530
+
+    generate token user
+
+[33mcommit 48719d88f9300c50cabc5be6ee183f56b2887f26[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Sun Jul 7 16:30:14 2024 +0530
+
+    remove cart,clear cart ,get all cart product.
+
+[33mcommit 7645f625dbb61c5fb4e1050562dfed565fd6452a[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Sat Jul 6 23:14:39 2024 +0530
+
+    add to cart make controller
+
+[33mcommit 4404ef82b7b3c87816cb58c9bb68179e7b76ce00[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Wed Jul 3 00:27:08 2024 +0530
+
+    product controller write add,delete,update,all.
+
+[33mcommit ee242592a126cd4c5b290917f7e2ed691469e426[m
+Author: Pratap Suryawanshi <pratapsuryawanshi007@gmail.com>
+Date:   Mon Jul 1 00:47:30 2024 +0530
+
+    first commit

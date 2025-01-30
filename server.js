@@ -9,10 +9,25 @@ import addressRouter from "./routes/Address.js";
 import cors from "cors";
 import routerpayment from './routes/payment.js'
 import dotenv from 'dotenv';
-
+import session from "express-session";
 dotenv.config();
 
 const app = express();
+
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+// Configure session middleware
+app.use(
+  session({
+    secret: "#$#$#(*$", // Change this to a secure secret
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }, // 1-day expiration
+  })
+);
+
+
+
 
 app.use(
   cors({

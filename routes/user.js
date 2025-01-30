@@ -1,5 +1,5 @@
 import express from 'express'
-import {register,Userlogin,allUsers,profile}  from '../controllers/user.js'
+import {register,Userlogin,allUsers,profile,deleteUserByid}  from '../controllers/user.js'
 import {Authenticated} from '../middlewares/Auth.js'
 const router=express.Router()
 
@@ -13,6 +13,8 @@ router.get("/allusers",allUsers)
 //routes for getUser profile 
 router.get("/profile",Authenticated,profile)
 
+//delete userby id
+router.delete("/deleteuser/:id",deleteUserByid)
 export default router  //this router export into server.js file
 
 
@@ -25,12 +27,3 @@ export default router  //this router export into server.js file
 
 
 
-// import express from 'express';
-// import { register } from '../controllers/user.js';
-
-// const router = express.Router();
-
-// // Register route
-// router.post('/register', register);
-
-// export default router;

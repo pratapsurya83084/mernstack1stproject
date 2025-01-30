@@ -66,11 +66,14 @@ export const updateproductById = async (req, res) => {
 
 // delete product by id
     export const deleteproductById = async (req, res) => {
-        //   try {
+       
             const id = req.params.id;
-            //  const update = req.body    
-            const product = await Products.findByIdAndDelete(id);
-            if (!product) return res.json({ message: "Invalid id......" });
-            return res.json({ message: "product is deleted successfully", product });
-        //   } catch (error) {}
+          
+            const product = await Products.findByIdAndDelete({_id:id});
+            if (!product){
+               return res.json({ message: "Invalid id......","delete":false ,id});
+            }else{
+              return res.json({ message: "product is deleted successfully", product ,"delete":true});
+       
+            }
         };
