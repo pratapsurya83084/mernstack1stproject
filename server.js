@@ -17,14 +17,26 @@ const app = express();
 app.use(express.json());
 
 // CORS setup for allowing the frontend to communicate with the backend
+const allowedOrigins = [
+  "http://localhost:5173",  // Localhost for development
+  "https://ecomerce.netlify.app" // Netlify deployed frontend
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend URL
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS policy does not allow this origin"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // To send credentials (cookies, tokens)
+    credentials: true, // Allow cookies & authentication headers
     allowedHeaders: ["Content-Type", "Auth"],
   })
 );
+
 
 // Configure session middleware
 app.use(
