@@ -19,7 +19,8 @@ app.use(express.json());
 // CORS setup for allowing the frontend to communicate with the backend
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend URL
+    origin: "https://mern-ecomerce-application.netlify.app/",
+    // "http://localhost:5173", // Replace with your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // To send credentials (cookies, tokens)
     allowedHeaders: ["Content-Type", "Auth"],
