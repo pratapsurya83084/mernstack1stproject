@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 //sent token into header
 export const Authenticated = async (req, res, next) => {
   const token = req.header("Auth");
-  console.log("Token received  : ", token);
+  // console.log("Token received  : ", token);
 
   if (!token) {
     return res.json({ message: "please login first" });
@@ -13,7 +13,7 @@ export const Authenticated = async (req, res, next) => {
   try {
    //verify token
    const decode = jwt.verify(token,'#$#$#(*$'); //(token,secretKey)
-   console.log("decoded token is....: ",decode);
+  //  console.log("decoded token is....: ",decode);
    if (!decode) {
     res.json({ message: "token is not valid .."});
    }
@@ -59,7 +59,7 @@ export const Authenticated = async (req, res, next) => {
 export const AuthCart = async (req, res, next) => {
   const token = req.header("Auth");
 
-  console.log("Token received:", token);
+  // console.log("Token received:", token);
 
   // Check if token is provided
   if (!token) {
@@ -69,7 +69,7 @@ export const AuthCart = async (req, res, next) => {
   try {
     // Verify the token
     const decode = jwt.verify(token, '#$#$#(*$'); // (token, secretKey)
-    console.log("Decoded token is:", decode);
+    // console.log("Decoded token is:", decode);
 
     const userId = decode.userId;
 
@@ -98,7 +98,7 @@ export const AuthCart = async (req, res, next) => {
 export const AuthAddCart = async(req,res,next)=>{
   const token = req.header("Auth");
 
-  console.log("Token received  : ", token);
+  // console.log("Token received  : ", token);
 
   if (!token) {
     return res.json({ message: "please login first" });
@@ -107,7 +107,7 @@ export const AuthAddCart = async(req,res,next)=>{
   try {
    //verify token
    const decode = jwt.verify(token,'#$#$#(*$'); //(token,secretKey)
-   console.log("decoded token is....: ",decode);
+  //  console.log("decoded token is....: ",decode);
    
    const UserId = decode.userId;
  
@@ -135,7 +135,7 @@ export const AuthAddCart = async(req,res,next)=>{
 export const RemovefromCart = async(req,res,next)=>{
   const token = req.header("Auth");
 
-  console.log("Token received  : ", token);
+  // console.log("Token received  : ", token);
 
   if (!token) {
     return res.json({ message: "please login first" });
@@ -144,7 +144,7 @@ export const RemovefromCart = async(req,res,next)=>{
   try {
    //verify token
    const decode = jwt.verify(token,'#$#$#(*$'); //(token,secretKey)
-   console.log("decoded token is....: ",decode);
+  //  console.log("decoded token is....: ",decode);
    
    const UserId = decode.userId;
  
@@ -172,7 +172,7 @@ export const RemovefromCart = async(req,res,next)=>{
 export const decsreaseQty = async(req,res,next)=>{
   const token = req.header("Auth");
 
-  console.log("Token received  : ", token);
+  // console.log("Token received  : ", token);
 
   if (!token) {
     return res.json({ message: "please login first" });
@@ -181,7 +181,7 @@ export const decsreaseQty = async(req,res,next)=>{
   try {
    //verify token
    const decode = jwt.verify(token,'#$#$#(*$'); //(token,secretKey)
-   console.log("decoded token is....: ",decode);
+  //  console.log("decoded token is....: ",decode);
    
    const UserId = decode.userId;
  
@@ -210,7 +210,7 @@ export const decsreaseQty = async(req,res,next)=>{
 export const incsreaseQty = async(req,res,next)=>{
   const token = req.header("Auth");
 
-  console.log("Token received  : ", token);
+  // console.log("Token received  : ", token);
 
   if (!token) {
     return res.json({ message: "please login first" });
@@ -219,7 +219,7 @@ export const incsreaseQty = async(req,res,next)=>{
   try {
    //verify token
    const decode = jwt.verify(token,'#$#$#(*$'); //(token,secretKey)
-   console.log("decoded token is....: ",decode);
+  //  console.log("decoded token is....: ",decode);
    
    const UserId = decode.userId;
  
@@ -247,7 +247,7 @@ export const incsreaseQty = async(req,res,next)=>{
 export const addressmiddlewaere = async(req,res,next)=>{
   const token = req.header("Auth");
 
-  console.log("Token received  : ", token);
+  // console.log("Token received  : ", token);
 
   if (!token) {
     return res.json({ message: "please login first" });
@@ -256,7 +256,7 @@ export const addressmiddlewaere = async(req,res,next)=>{
   try {
    //verify token
    const decode = jwt.verify(token,'#$#$#(*$'); //(token,secretKey)
-   console.log("decoded token is....: ",decode);
+  //  console.log("decoded token is....: ",decode);
    
    const UserId = decode.userId;
  
@@ -285,7 +285,7 @@ export const addressmiddlewaere = async(req,res,next)=>{
 export const orderConfirm = async(req,res,next)=>{
   const token = req.header("Auth");
 
-  console.log("Token received  : ", token);
+  // console.log("Token received  : ", token);
 
   if (!token) {
     return res.json({ message: "please login first" });
@@ -294,7 +294,7 @@ export const orderConfirm = async(req,res,next)=>{
   try {
    //verify token
    const decode = jwt.verify(token,'#$#$#(*$'); //(token,secretKey)
-   console.log("decoded token is....: ",decode);
+  //  console.log("decoded token is....: ",decode);
    
    const UserId = decode.userId;
  

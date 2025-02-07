@@ -9,6 +9,8 @@ import routerpayment from './routes/payment.js';
 import dotenv from 'dotenv';
 import session from "express-session";
 
+import testRouter  from './routes/AuthRouter.js';
+
 dotenv.config();
 
 const app = express();
@@ -19,8 +21,9 @@ app.use(express.json());
 // CORS setup for allowing the frontend to communicate with the backend
 app.use(
   cors({
-    origin:"https://mernstackproject-16.onrender.com",  //16
-    // "http://localhost:5173",  // No trailing slash
+    origin:"http://localhost:5173",
+    // "https://mernstackproject-16.onrender.com",  //16
+    // "",  // No trailing slash
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Allow cookies and tokens
     allowedHeaders: ["Content-Type", "Auth"],  // Use "Authorization" for authentication
@@ -48,6 +51,8 @@ app.use("/api/product", ProductRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/address", addressRouter);
 app.use("/api/payment", routerpayment);
+app.use("/api/auth",testRouter);
+
 
 // MongoDB connection
 mongoose
