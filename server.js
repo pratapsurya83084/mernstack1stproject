@@ -21,9 +21,10 @@ app.use(express.json());
 // CORS setup for allowing the frontend to communicate with the backend
 app.use(
   cors({
-    origin:"http://localhost:5173",
-    // "https://mernstackproject-16.onrender.com",  //16
-    // "",  // No trailing slash
+    origin:"https://mernStackproject-17.onrender.com",
+    // "http://localhost:5173",
+    
+
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Allow cookies and tokens
     allowedHeaders: ["Content-Type", "Auth"],  // Use "Authorization" for authentication
