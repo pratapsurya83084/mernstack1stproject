@@ -44,7 +44,14 @@ export const Userlogin = async (req, res) => {
 
     const token = jwt.sign( { userId: user._id }, "#$#$#(*$", { expiresIn:'2d'});
     req.session.token = token; 
-      
+    
+    res.cookie("AuthToken", token, {
+      httpOnly: false, // So that you can read it from the frontend
+      secure: false, // Allow it on non-HTTPS (localhost or development)
+      maxAge: 2 * 24 * 60 * 60 * 1000, // 2 day
+      sameSite: "lax", // Allow cookie sharing
+    });
+
     res.json({name:`${user.name}`,email:`${user.email}`, message: `welcome ${user.name}`, token, sucess: true });
    
   } catch (error) {

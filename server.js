@@ -8,23 +8,21 @@ import addressRouter from "./routes/Address.js";
 import routerpayment from './routes/payment.js';
 import dotenv from 'dotenv';
 import session from "express-session";
-
+import cookieParser from 'cookie-parser';
 import testRouter  from './routes/AuthRouter.js';
 
 dotenv.config();
 
 const app = express();
-
+// Use cookie-parser middleware
+app.use(cookieParser());
 // Middleware to parse JSON requests
 app.use(express.json());
 
 // CORS setup for allowing the frontend to communicate with the backend
 app.use(
   cors({
-    origin:"https://mernStackproject-17.onrender.com",
-    // "http://localhost:5173",
-    
-
+    origin:"http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Allow cookies and tokens
     allowedHeaders: ["Content-Type", "Auth"],  // Use "Authorization" for authentication

@@ -1,12 +1,16 @@
 import express from 'express'
 import {register,Userlogin,allUsers,profile,deleteUserByid}  from '../controllers/user.js'
 import {Authenticated} from '../middlewares/Auth.js'
+import {googleLogin} from '../controllers/googleLogin.js'
 const router=express.Router()
 
 //register user
 router.post('/register',register)
 // login router
 router.post('/login',Userlogin)
+
+//googleLogin
+router.post("/google/auth",googleLogin)
 //create a routes for allUsers 
 router.get("/allusers",allUsers)
 
