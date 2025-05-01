@@ -34,8 +34,8 @@ export const googleLogin = async (req, res) => {
     });
      //setcookies token
      res.cookie("googleAuthToken", token, {
-      httpOnly: true, // So that you can read it from the frontend
-      secure: true, // Allow it on non-HTTPS (localhost or development)
+      httpOnly: false, 
+      secure: false, //
       maxAge: 2 * 24 * 60 * 60 * 1000, // 2 day
       sameSite: "lax", // Allow cookie sharing
     });
@@ -47,11 +47,37 @@ export const googleLogin = async (req, res) => {
         name: user.name,
         email: user.email,
         picture: user.picture,
+
+        userid: user._id,
+        success:true
       },
+    
     });
   } catch (err) {
     res
       .status(401)
-      .json({ message: "Invalid Google token", error: err.message });
+      .json({ message: "Invalid Google token", error: err.message,
+        success:false
+       });
   }
 };
+
+
+export const googleLogout = async(req,res)=>{
+
+try {
+  res.clearCookie("googleAuthToken", {
+    httpOnly: false,  // Must match original settings
+    secure: false,
+    sameSite: "lax",
+  });
+  return res.status(200).json({
+    message :"google Logout Successfully",
+    success :true
+  })
+} catch (error) {
+  console.log("Logout failed please try again :", error);
+  
+}
+
+}

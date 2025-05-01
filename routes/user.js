@@ -1,16 +1,20 @@
 import express from 'express'
-import {register,Userlogin,allUsers,profile,deleteUserByid}  from '../controllers/user.js'
+import {register,Userlogin,allUsers,profile,deleteUserByid,formLogout}  from '../controllers/user.js'
 import {Authenticated} from '../middlewares/Auth.js'
-import {googleLogin} from '../controllers/googleLogin.js'
+import {googleLogin,googleLogout} from '../controllers/googleLogin.js'
 const router=express.Router()
 
 //register user
 router.post('/register',register)
 // login router
 router.post('/login',Userlogin)
+router.post('/formLogout',formLogout)
 
 //googleLogin
 router.post("/google/auth",googleLogin)
+
+//logout googleLogout
+router.post("/googleLogout",googleLogout);
 //create a routes for allUsers 
 router.get("/allusers",allUsers)
 

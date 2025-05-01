@@ -52,13 +52,9 @@ app.use("/api/address", addressRouter);
 app.use("/api/payment", routerpayment);
 app.use("/api/auth",testRouter);
 
-
+const url=process.env.DB_CONNECTION_URL;
 // MongoDB connection
-mongoose
-  .connect(process.env.DB_CONNECTION_URL, {
-    dbname: process.env.DB_NAME,
-  })
-  .then(() => console.log("MongoDB connected successfully........"))
+mongoose.connect(`${url}mern_ecomerce?retryWrites=true&w=majority`).then(() => console.log("MongoDB connected successfully........"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
 // Basic route to check server status

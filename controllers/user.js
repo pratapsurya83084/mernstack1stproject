@@ -52,7 +52,12 @@ export const Userlogin = async (req, res) => {
       sameSite: "lax", // Allow cookie sharing
     });
 
-    res.json({name:`${user.name}`,email:`${user.email}`, message: `welcome ${user.name}`, token, sucess: true });
+    res.json({name:`${user.name}`
+      ,email:`${user.email}`,
+       message: `welcome ${user.name}`,
+       id:user._id,
+        token, sucess: true
+       });
    
   } catch (error) {
     return res.json({
@@ -60,6 +65,24 @@ export const Userlogin = async (req, res) => {
     });
   }
 };
+
+export const formLogout = async (req, res) => {
+  try {
+    // res.clearCookie("jwt");
+
+    res.clearCookie("AuthToken", {
+      httpOnly: false,  // Must match original settings
+      secure: false,
+      sameSite: "lax",
+    });
+    return res
+      .status(200)
+      .json({ message: "formLogin Logged out successfully", status: true });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 
 //get all users
 export const allUsers = async (req, res) => {
