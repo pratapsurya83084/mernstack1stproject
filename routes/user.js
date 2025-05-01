@@ -2,7 +2,14 @@ import express from 'express'
 import {register,Userlogin,allUsers,profile,deleteUserByid,formLogout}  from '../controllers/user.js'
 import {Authenticated} from '../middlewares/Auth.js'
 import {googleLogin,googleLogout} from '../controllers/googleLogin.js'
+import { adminLogin,AdminLogout } from '../controllers/AdminLogin.js'
 const router=express.Router()
+
+
+router.post("/adminlogin",adminLogin);
+
+router.post("/adminlogout",AdminLogout);
+//logout admin
 
 //register user
 router.post('/register',register)
