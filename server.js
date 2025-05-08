@@ -25,7 +25,7 @@ app.use(
     origin:"http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Allow cookies and tokens
-    allowedHeaders: ["Content-Type", "Auth"],  // Use "Authorization" for authentication
+    // allowedHeaders: ["Content-Type", "Auth"],  // Use "Authorization" for authentication
   })
 );
 

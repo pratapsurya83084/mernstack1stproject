@@ -13,7 +13,7 @@ router.get("/getallproduct",getAllProduct)
 router.get("/:id",getProductById)
 
 // routes for updated product by id
-router.put("/:id",updateproductById) //.put method used for update
+router.put("updateprod/:id",updateproductById) //.put method used for update
 
 //delete product by id
 router.delete("/:id",deleteproductById)
