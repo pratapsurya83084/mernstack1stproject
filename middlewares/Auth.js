@@ -1,9 +1,11 @@
 import { User } from "../models/User.js";
 import jwt from "jsonwebtoken";
-
+import UsergoogleLogin  from '../models/GoogleLogin.js';
+import {AdminLogin} from '../models/adminLogin.js';
 //sent token into header
 export const Authenticated = async (req, res, next) => {
-  const token = req.header("Auth");
+  const token =req.cookies.jwt
+  // req.header("Auth");
   // console.log("Token received  : ", token);
 
   if (!token) {
@@ -55,11 +57,13 @@ export const Authenticated = async (req, res, next) => {
 }
 
 
-//cart Auth
+//AddTocart Auth
 export const AuthCart = async (req, res, next) => {
-  const token = req.header("Auth");
+  const token =  req.cookies.adminToken || req.cookies.googleAuthToken ||req.cookies.AuthToken;
+console.log("google login token user :",req.cookies.googleAuthToken);
+console.log("admin form token:",req.cookies.adminToken );
+console.log("user form token:",req.cookies.AuthToken );
 
-  // console.log("Token received:", token);
 
   // Check if token is provided
   if (!token) {
@@ -74,7 +78,8 @@ export const AuthCart = async (req, res, next) => {
     const userId = decode.userId;
 
     // Find the user based on the decoded token
-    const user = await User.findById(userId);
+    const user = await User.findById(userId) || await UsergoogleLogin.findById(userId)|| await AdminLogin.findById(userId) ;
+console.log("google login user :",user);
 
     if (!user) {
       return res.json({ message: "User not found", success: false });
@@ -96,7 +101,8 @@ export const AuthCart = async (req, res, next) => {
 
 // AuthAddCart
 export const AuthAddCart = async(req,res,next)=>{
-  const token = req.header("Auth");
+  const token = req.cookies.adminToken;
+console.log("cart add token reciev:",token);
 
   // console.log("Token received  : ", token);
 

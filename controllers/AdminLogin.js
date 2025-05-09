@@ -36,7 +36,7 @@ export const adminLogin = async(req,res)=>{
       }
   
       // 4. Generate JWT Token
-      const token = jwt.sign({ id: admin._id, email: admin.email }, "#$#$#(*$", { expiresIn: '2d' });
+      const token = jwt.sign({ userId: admin._id, email: admin.email }, "#$#$#(*$", { expiresIn: '2d' });
   
 
       res.cookie("adminToken", token, {

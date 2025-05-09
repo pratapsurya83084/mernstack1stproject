@@ -6,6 +6,7 @@ import { Cart } from "../models/Cart.js";
 export const addToCart = async (req, res) => {
   try {
     const { productid, title, price, qty, imgsrc } = req.body;
+console.log("reciv cart :",productid,title,price,qty,imgsrc);
 
     // Validate input fields
     if (!productid || !title || !price || !qty || !imgsrc) {
