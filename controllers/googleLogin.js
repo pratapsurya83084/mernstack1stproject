@@ -29,7 +29,7 @@ export const googleLogin = async (req, res) => {
       await user.save();
     }
 
-    const token = jwt.sign({ userId: UsergoogleLogin._id }, "#$#$#(*$", {
+    const token = jwt.sign({ userId: user._id }, "#$#$#(*$", {
       expiresIn: "2d",
     });
      //setcookies token
