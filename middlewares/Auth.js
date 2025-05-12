@@ -98,12 +98,10 @@ export const AuthCart = async (req, res, next) => {
   }
 };
 
-// AuthAddCart
+//get cart item AuthCart
 export const AuthAddCart = async (req, res, next) => {
-  const token =
-    req.cookies.adminToken ||
-    req.cookies.googleAuthToken ||
-    req.cookies.AuthToken;
+
+  const token = req.cookies.adminToken || req.cookies.googleAuthToken || req.cookies.AuthToken;
   console.log("google login token user :", req.cookies.googleAuthToken);
   console.log("admin form token:", req.cookies.adminToken);
   console.log("user form token:", req.cookies.AuthToken);

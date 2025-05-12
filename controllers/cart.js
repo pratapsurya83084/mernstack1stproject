@@ -59,9 +59,8 @@ console.log("reciv cart :",productid,title,price,qty,imgsrc);
 };
 
 //get user cart middlwaeredd
-
 export const UserCart = async (req, res) => {
-  const userId = req.user; //product cart userId
+  const userId = req.user; //product cart userId  from middleware
   const cart = await Cart.findOne({ userId });
   if (!cart) {
     res.json({ message: "product is not exists in the cart.... " });
@@ -136,6 +135,7 @@ export const clearCart = async (req, res) => {
 export const decreaseProductqty = async (req, res) => {
   const { qty, productid } = req.body; // Quantity to decrease and product ID
   const userId = req.user; // Replace with dynamic user ID as needed
+console.log("requested user :",userId);
 
   // Check if qty is a positive integer
   if (qty <= 0 || isNaN(qty)) {
@@ -179,7 +179,9 @@ export const decreaseProductqty = async (req, res) => {
 export const IncreaseProductqty = async (req, res) => {
   const { qty, productid } = req.body; // Quantity to decrease and product ID
   const userId = req.user; // Replace with dynamic user ID as needed
-
+  console.log("received pid and qty :",qty,productid);
+  
+console.log("requested user :",userId);
   // Check if qty is a positive integer
   if (qty <= 0 || isNaN(qty)) {
     return res.status(400).json({ message: "Invalid quantity" });
