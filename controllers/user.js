@@ -45,12 +45,13 @@ export const Userlogin = async (req, res) => {
     const token = jwt.sign( { userId: user._id }, "#$#$#(*$", { expiresIn:'2d'});
     req.session.token = token; 
     
-    res.cookie("AuthToken", token, {
-      httpOnly: false, // So that you can read it from the frontend
-      secure: false, // Allow it on non-HTTPS (localhost or development)
-      maxAge: 2 * 24 * 60 * 60 * 1000, // 2 day
-      sameSite: "lax", // Allow cookie sharing
-    });
+ res.cookie("AuthToken", token, {
+  httpOnly: true,        // Prevent client-side access for security
+  secure: true,          // Ensure cookies are only sent over HTTPS
+  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
+  sameSite: "Strict",    // Prevent CSRF attacks by restricting cross-site requests
+});
+
 
     res.json({name:`${user.name}`
       ,email:`${user.email}`,
@@ -98,6 +99,8 @@ export const allUsers = async (req, res) => {
 export const profile = async (req, res, next) => {
   try {
       const user = await User.findById(req.userId);
+      console.log("usersssss:",user);
+      
       if (!user) {
           return res.status(404).json({ message: "User not found" });
       }

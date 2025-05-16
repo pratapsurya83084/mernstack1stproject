@@ -38,13 +38,12 @@ export const adminLogin = async(req,res)=>{
       // 4. Generate JWT Token
       const token = jwt.sign({ userId: admin._id, email: admin.email }, "#$#$#(*$", { expiresIn: '2d' });
   
-
-      res.cookie("adminToken", token, {
-        httpOnly: false, // So that you can read it from the frontend
-        secure: false, // Allow it on non-HTTPS (localhost or development)
-        maxAge: 2 * 24 * 60 * 60 * 1000, // 2 day
-        sameSite: "lax", // Allow cookie sharing
-      });
+  res.cookie("adminToken", token, {
+  httpOnly: true,        // Prevent client-side access for security
+  secure: true,          // Ensure cookies are only sent over HTTPS
+  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
+  sameSite: "Strict",    // Prevent CSRF attacks by restricting cross-site requests
+});
 
       return res.status(200).json({
         message: "Login successful",
@@ -79,3 +78,6 @@ export const adminLogin = async(req,res)=>{
       res.status(500).json({ message: "Server error", error: error.message });
     }
   };
+
+
+  

@@ -30,13 +30,13 @@ export const Authenticated = async (req, res, next) => {
       (await User.findById(userId)) ||
       (await UsergoogleLogin.findById(userId)) ||
       (await AdminLogin.findById(userId));
-    console.log("google login user :", user);
+    // console.log("google login user :", user);
 
     if (!user) {
       return res.json({ message: "User not found", success: false });
     } else {
       // Attach user to the request object
-      req.user = user;
+      req.userId = user;
       next(); // Pass control to the next middleware/route handler
     }
   } catch (error) {
