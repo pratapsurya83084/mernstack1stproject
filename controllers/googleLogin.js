@@ -1,7 +1,7 @@
 import { OAuth2Client } from "google-auth-library";
 import jwt from "jsonwebtoken";
 import UsergoogleLogin from "../models/GoogleLogin.js"; // Adjust the path based on your file structure
-import { useAccordion } from "@chakra-ui/react";
+
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
