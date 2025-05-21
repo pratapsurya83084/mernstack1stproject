@@ -19,7 +19,7 @@ app.use(cookieParser());
 // Middleware to parse JSON requests
 app.use(express.json());
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://mernecom-aplication.netlify.app");
+  res.setHeader("Access-Control-Allow-Origin", "https://webaplication.netlify.app");
   res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 app.use(
   cors({
     // origin:"http://localhost:5173",
-    origin: "https://mernecom-aplication.netlify.app",
+    origin: "https://webaplication.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Allow cookies and tokens
     // allowedHeaders: ["Content-Type", "Auth"],  // Use "Authorization" for authentication
