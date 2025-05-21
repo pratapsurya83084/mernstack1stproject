@@ -80,6 +80,7 @@ export const AdminLogout = async (req, res) => {
   secure: true,
   maxAge: 2 * 24 * 60 * 60 * 1000,
   sameSite: "None", 
+  path: "/",    
     });
     return res
       .status(200)
