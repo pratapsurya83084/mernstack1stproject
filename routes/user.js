@@ -2,7 +2,7 @@ import express from 'express'
 import {register,Userlogin,allUsers,profile,deleteUserByid,formLogout}  from '../controllers/user.js'
 import {Authenticated} from '../middlewares/Auth.js'
 import {getGoogleProfile, googleLogin,googleLogout} from '../controllers/googleLogin.js'
-import { adminLogin,AdminLogout } from '../controllers/AdminLogin.js'
+import { adminLogin,AdminLogout, ResetAdminPassword } from '../controllers/AdminLogin.js'
 const router=express.Router()
 
 
@@ -30,7 +30,10 @@ router.get("/profile",Authenticated,profile)
 router.get("/googleprofile",Authenticated,getGoogleProfile)
 
 //delete userby id
-router.delete("/deleteuser/:id",deleteUserByid)
+router.delete("/deleteuser/:id",deleteUserByid);
+
+//update password
+router.post("/admin/updatepassword",ResetAdminPassword);
 export default router  //this router export into server.js file
 
 

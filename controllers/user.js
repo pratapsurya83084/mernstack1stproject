@@ -45,12 +45,22 @@ export const Userlogin = async (req, res) => {
     const token = jwt.sign( { userId: user._id }, "#$#$#(*$", { expiresIn:'2d'});
     req.session.token = token; 
     
- res.cookie("AuthToken", token, {
-  httpOnly: true,        // Prevent client-side access for security
-  secure: true,          // Ensure cookies are only sent over HTTPS
-  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
-  sameSite: "Strict",    // Prevent CSRF attacks by restricting cross-site requests
+//for local use this 
+res.cookie("AuthToken", token, {
+  httpOnly: false,
+  secure: false,
+  maxAge: 2 * 24 * 60 * 60 * 1000,
+  sameSite: "Lax",
+  path: "/",  // Allow cookies for same-site requests and top-level navigation
 });
+
+    //for production allow below code
+//  res.cookie("AuthToken", token, {
+//   httpOnly: true,        // Prevent client-side access for security
+//   secure: true,          // Ensure cookies are only sent over HTTPS
+//   maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
+//   sameSite: "Strict",    // Prevent CSRF attacks by restricting cross-site requests
+// });
 
 
     res.json({name:`${user.name}`

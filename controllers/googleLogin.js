@@ -2,7 +2,6 @@ import { OAuth2Client } from "google-auth-library";
 import jwt from "jsonwebtoken";
 import UsergoogleLogin from "../models/GoogleLogin.js"; // Adjust the path based on your file structure
 
-
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 export const googleLogin = async (req, res) => {
@@ -33,14 +32,23 @@ export const googleLogin = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, "#$#$#(*$", {
       expiresIn: "2d",
     });
-     //setcookies token
-     res.cookie("googleAuthToken", token, {
-  httpOnly: true,        // Prevent client-side access for security
-  secure: true,          // Ensure cookies are only sent over HTTPS
-  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
-  sameSite: "Strict",    // Prevent CSRF attacks by restricting cross-site requests
-});
 
+    //for local  only allow
+    res.cookie("googleAuthToken", token, {
+      httpOnly: false,
+      secure: false,
+      maxAge: 2 * 24 * 60 * 60 * 1000,
+      sameSite: "Lax",
+      path: "/", //Prevent CSRF attacks by restricting cross-site requests
+    });
+
+    //setcookies token
+    //      res.cookie("googleAuthToken", token, {
+    //   httpOnly: true,        // Prevent client-side access for security
+    //   secure: true,          // Ensure cookies are only sent over HTTPS
+    //   maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
+    //   sameSite: "Strict",    // Prevent CSRF attacks by restricting cross-site requests
+    // });
 
     return res.json({
       message: `Welcome ${user.name}`,
@@ -51,19 +59,17 @@ export const googleLogin = async (req, res) => {
         picture: user.picture,
 
         userid: user._id,
-        success:true
+        success: true,
       },
-    
     });
   } catch (err) {
-    res
-      .status(401)
-      .json({ message: "Invalid Google token", error: err.message,
-        success:false
-       });
+    res.status(401).json({
+      message: "Invalid Google token",
+      error: err.message,
+      success: false,
+    });
   }
 };
-
 
 //retrive google login user profile
 
@@ -72,7 +78,6 @@ export const getGoogleProfile = async (req, res) => {
   console.log("User ID:", userId);
 
   try {
-   
     const user = await UsergoogleLogin.findById(userId);
     console.log("User Profile:", user);
 
@@ -97,23 +102,18 @@ export const getGoogleProfile = async (req, res) => {
   }
 };
 
-
-
-export const googleLogout = async(req,res)=>{
-
-try {
-  res.clearCookie("googleAuthToken", {
-    httpOnly: false,  // Must match original settings
-    secure: false,
-    sameSite: "lax",
-  });
-  return res.status(200).json({
-    message :"google Logout Successfully",
-    success :true
-  })
-} catch (error) {
-  console.log("Logout failed please try again :", error);
-  
-}
-
-}
+export const googleLogout = async (req, res) => {
+  try {
+    res.clearCookie("googleAuthToken", {
+      httpOnly: false, // Must match original settings
+      secure: false,
+      sameSite: "lax",
+    });
+    return res.status(200).json({
+      message: "google Logout Successfully",
+      success: true,
+    });
+  } catch (error) {
+    console.log("Logout failed please try again :", error);
+  }
+};
