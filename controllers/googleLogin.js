@@ -30,19 +30,17 @@ export const googleLogin = async (req, res) => {
     }
 
     const token = jwt.sign({ userId: user._id }, "#$#$#(*$", {
-      expiresIn: "2d",
+      expiresIn: "1d",
     });
 
     //for local  only allow
     res.cookie("googleAuthToken", token, {
-     httpOnly: false,
-  secure: true,
-  maxAge: 2 * 24 * 60 * 60 * 1000,
-  sameSite: "None", //Prevent CSRF attacks by restricting cross-site requests
-path: "/",      
-domain: ".mernstack1stproject-15.onrender.com"  // Optional, usually not needed
-
-});
+      httpOnly: false,
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "None", //Prevent CSRF attacks by restricting cross-site requests
+      
+    });
 
     //setcookies token
     //      res.cookie("googleAuthToken", token, {

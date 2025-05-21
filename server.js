@@ -26,7 +26,7 @@ app.use(
     origin: "https://appplicaation-mern-appecome.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Allow cookies and tokens
-    // allowedHeaders: ["Content-Type", "Auth"],  // Use "Authorization" for authentication
+  
   })
 );
 app.set('trust proxy', 1);

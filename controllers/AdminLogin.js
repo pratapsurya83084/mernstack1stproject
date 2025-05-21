@@ -36,16 +36,17 @@ export const adminLogin = async (req, res) => {
     const token = jwt.sign(
       { userId: admin._id, email: admin.email },
       "#$#$#(*$",
-      { expiresIn: "2d" }
+      { expiresIn: "1d" }
     );
 
     //for local use only
     res.cookie("adminToken", token, {
       httpOnly: false,
-      secure: false,
-      maxAge: 2 * 24 * 60 * 60 * 1000,
-      sameSite: "Lax",
-      path: "/", // Prevent CSRF attacks by restricting cross-site requests
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "None",
+    
+
     });
 
     //   res.cookie("adminToken", token, {
@@ -81,7 +82,7 @@ export const AdminLogout = async (req, res) => {
   maxAge: 2 * 24 * 60 * 60 * 1000,
   sameSite: "None", 
   path: "/", 
-  domain: ".mernstack1stproject-15.onrender.com"  // Optional, usually not needed
+   // Optional, usually not needed
    
     });
     return res

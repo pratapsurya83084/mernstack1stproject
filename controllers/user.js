@@ -42,37 +42,37 @@ export const Userlogin = async (req, res) => {
     if (!validPassword)
       return res.json({ message: "invalid creadential", success: false });
 
-    const token = jwt.sign( { userId: user._id }, "#$#$#(*$", { expiresIn:'2d'});
-    req.session.token = token; 
-    
-//for local use this 
-// res.cookie("AuthToken", token, {
-//   httpOnly: false,
-//   secure: false,
-//   maxAge: 2 * 24 * 60 * 60 * 1000,
-//   sameSite: "Lax",
-//   path: "/",  // Allow cookies for same-site requests and top-level navigation
-// });
+    const token = jwt.sign({ userId: user._id }, "#$#$#(*$", {
+      expiresIn: "1d",
+    });
+    req.session.token = token;
+
+    //for local use this
+    // res.cookie("AuthToken", token, {
+    //   httpOnly: false,
+    //   secure: false,
+    //   maxAge: 2 * 24 * 60 * 60 * 1000,
+    //   sameSite: "Lax",
+    //   path: "/",  // Allow cookies for same-site requests and top-level navigation
+    // });
 
     //for production allow below code
- res.cookie("AuthToken", token, {
-  httpOnly: false,
-  secure: true,
-  maxAge: 2 * 24 * 60 * 60 * 1000,
-  sameSite: "None",  // Prevent CSRF attacks by restricting cross-site requests
-path: "/",    
-domain: ".mernstack1stproject-15.onrender.com"  // Optional, usually not needed
+    res.cookie("AuthToken", token, {
+      httpOnly: false,
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "None", // Prevent CSRF attacks by restricting cross-site requests
+  
+    });
 
-});
-
-
-    res.json({name:`${user.name}`
-      ,email:`${user.email}`,
-       message: `welcome ${user.name}`,
-       id:user._id,
-        token, sucess: true
-       });
-   
+    res.json({
+      name: `${user.name}`,
+      email: `${user.email}`,
+      message: `welcome ${user.name}`,
+      id: user._id,
+      token,
+      sucess: true,
+    });
   } catch (error) {
     return res.json({
       message: error.message,
@@ -85,7 +85,7 @@ export const formLogout = async (req, res) => {
     // res.clearCookie("jwt");
 
     res.clearCookie("AuthToken", {
-      httpOnly: false,  // Must match original settings
+      httpOnly: false, // Must match original settings
       secure: false,
       sameSite: "lax",
     });
@@ -97,7 +97,6 @@ export const formLogout = async (req, res) => {
   }
 };
 
-
 //get all users
 export const allUsers = async (req, res) => {
   try {
@@ -108,41 +107,36 @@ export const allUsers = async (req, res) => {
   }
 };
 
-
 export const profile = async (req, res, next) => {
   try {
-      const user = await User.findById(req.userId);
-      console.log("usersssss:",user);
-      
-      if (!user) {
-          return res.status(404).json({ message: "User not found" });
-      }
-      res.json(user);
+    const user = await User.findById(req.userId);
+    console.log("usersssss:", user);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(user);
   } catch (error) {
-      next(error); // Pass error to the error-handling middleware
+    next(error); // Pass error to the error-handling middleware
   }
 };
 
-
-
-
 //delete user by id
-export const  deleteUserByid=async (req,res)=>{
-const userid=req.params.id
-console.log(userid);
+export const deleteUserByid = async (req, res) => {
+  const userid = req.params.id;
+  console.log(userid);
 
-const usedelete=await User.findOneAndDelete({_id:userid})
-if(!usedelete){
-res.json({
-  message:"user not found",
-  success:false
-})
-}else{
-  res.json({
-    message:"user deleted successFully",
-    success:true,
-    user:userid
-  })
-}
-
-}
+  const usedelete = await User.findOneAndDelete({ _id: userid });
+  if (!usedelete) {
+    res.json({
+      message: "user not found",
+      success: false,
+    });
+  } else {
+    res.json({
+      message: "user deleted successFully",
+      success: true,
+      user: userid,
+    });
+  }
+};
