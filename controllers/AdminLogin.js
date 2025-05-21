@@ -80,7 +80,9 @@ export const AdminLogout = async (req, res) => {
   secure: true,
   maxAge: 2 * 24 * 60 * 60 * 1000,
   sameSite: "None", 
-  path: "/",    
+  path: "/", 
+  domain: ".mernstack1stproject-15.onrender.com"  // Optional, usually not needed
+   
     });
     return res
       .status(200)

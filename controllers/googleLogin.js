@@ -39,7 +39,9 @@ export const googleLogin = async (req, res) => {
   secure: true,
   maxAge: 2 * 24 * 60 * 60 * 1000,
   sameSite: "None", //Prevent CSRF attacks by restricting cross-site requests
-path: "/",        
+path: "/",      
+domain: ".mernstack1stproject-15.onrender.com"  // Optional, usually not needed
+
 });
 
     //setcookies token

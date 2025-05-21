@@ -61,6 +61,8 @@ export const Userlogin = async (req, res) => {
   maxAge: 2 * 24 * 60 * 60 * 1000,
   sameSite: "None",  // Prevent CSRF attacks by restricting cross-site requests
 path: "/",    
+domain: ".mernstack1stproject-15.onrender.com"  // Optional, usually not needed
+
 });
 
 
