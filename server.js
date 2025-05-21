@@ -18,7 +18,13 @@ const app = express();
 app.use(cookieParser());
 // Middleware to parse JSON requests
 app.use(express.json());
-
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://mernecom-aplication.netlify.app");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  next();
+});
 // CORS setup for allowing the frontend to communicate with the backend
 app.use(
   cors({
