@@ -7,7 +7,7 @@ import cartRouter from "./routes/cart.js";
 import addressRouter from "./routes/Address.js";
 import routerpayment from './routes/payment.js';
 import dotenv from 'dotenv';
-import session from "express-session";
+
 import cookieParser from 'cookie-parser';
 import testRouter  from './routes/AuthRouter.js';
 
@@ -24,26 +24,25 @@ app.use(
   cors({
     // origin:"http://localhost:5173",
     origin: "https://appplicaation-mern-appecome.netlify.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+      // methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Allow cookies and tokens
-  
   })
 );
-app.set('trust proxy', 1);
+// app.set('trust proxy', 1);
 
 // Configure session middleware
-app.use(
-  session({
-    secret: "#$#$#(*$", // Use a secure secret
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: false,  // Set to `true` if using HTTPS in production
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 1-day expiration
-    },
-  })
-);
+// app.use(
+//   session({
+//     secret: "#$#$#(*$", // Use a secure secret
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       secure: true,  // Set to `true` if using HTTPS in production
+//       httpOnly: true,
+//       maxAge: 24 * 60 * 60 * 1000, // 1-day expiration
+//     },
+//   })
+// );
 
 // Register Routes
 app.use("/api/user", userRouter);

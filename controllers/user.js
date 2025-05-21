@@ -61,7 +61,7 @@ export const Userlogin = async (req, res) => {
       httpOnly: false,
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
-      sameSite: "None", // Prevent CSRF attacks by restricting cross-site requests
+      // sameSite: "None", // Prevent CSRF attacks by restricting cross-site requests
   
     });
 
