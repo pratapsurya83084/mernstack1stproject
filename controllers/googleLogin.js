@@ -35,10 +35,10 @@ export const googleLogin = async (req, res) => {
 
     //for local  only allow
     res.cookie("googleAuthToken", token, {
-     httpOnly: true,        // Prevent client-side access for security
-  secure: true,          // Ensure cookies are only sent over HTTPS
-  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
-  sameSite: "Strict",  //Prevent CSRF attacks by restricting cross-site requests
+     httpOnly: true,
+  secure: true,
+  maxAge: 2 * 24 * 60 * 60 * 1000,
+  sameSite: "None", //Prevent CSRF attacks by restricting cross-site requests
     });
 
     //setcookies token

@@ -76,10 +76,10 @@ export const AdminLogout = async (req, res) => {
     // res.clearCookie("jwt");
 
     res.clearCookie("adminToken", {
-      httpOnly: true,        // Prevent client-side access for security
-  secure: true,          // Ensure cookies are only sent over HTTPS
-  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
-  sameSite: "Strict", 
+     httpOnly: true,
+  secure: true,
+  maxAge: 2 * 24 * 60 * 60 * 1000,
+  sameSite: "None", 
     });
     return res
       .status(200)
