@@ -30,19 +30,7 @@ app.use(
 );
 // app.set('trust proxy', 1);
 
-// Configure session middleware
-// app.use(
-//   session({
-//     secret: "#$#$#(*$", // Use a secure secret
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//       secure: true,  // Set to `true` if using HTTPS in production
-//       httpOnly: true,
-//       maxAge: 24 * 60 * 60 * 1000, // 1-day expiration
-//     },
-//   })
-// );
+
 
 // Register Routes
 app.use("/api/user", userRouter);

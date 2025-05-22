@@ -45,24 +45,13 @@ export const Userlogin = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, "#$#$#(*$", {
       expiresIn: "1d",
     });
-    req.session.token = token;
-
-    //for local use this
-    // res.cookie("AuthToken", token, {
-    //   httpOnly: false,
-    //   secure: false,
-    //   maxAge: 2 * 24 * 60 * 60 * 1000,
-    //   sameSite: "Lax",
-    //   path: "/",  // Allow cookies for same-site requests and top-level navigation
-    // });
 
     //for production allow below code
     res.cookie("AuthToken", token, {
       httpOnly: false,
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
-      // sameSite: "None", // Prevent CSRF attacks by restricting cross-site requests
-  
+      sameSite: "None", // Prevent CSRF attacks by restricting cross-site requests
     });
 
     res.json({
@@ -82,13 +71,16 @@ export const Userlogin = async (req, res) => {
 
 export const formLogout = async (req, res) => {
   try {
-    // res.clearCookie("jwt");
+ 
 
-    res.clearCookie("AuthToken", {
-      httpOnly: false, // Must match original settings
-      secure: false,
-      sameSite: "lax",
+    // Optional fallback to ensure removal
+   res.cookie("AuthToken", "", {
+      httpOnly: false,
+      secure: true, // Change to `true` in production (if using HTTPS)
+      sameSite: "None",
+      expires: new Date(0), // Set expiration to past time
     });
+
     return res
       .status(200)
       .json({ message: "formLogin Logged out successfully", status: true });

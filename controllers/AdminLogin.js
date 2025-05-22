@@ -33,27 +33,17 @@ export const adminLogin = async (req, res) => {
     }
 
     // 4. Generate JWT Token
-    const token = jwt.sign(
-      { userId: admin._id, email: admin.email },
-      "#$#$#(*$",
-      { expiresIn: "1d" }
-    );
+    const token = jwt.sign({ userId: admin._id }, "#$#$#(*$", {
+      expiresIn: "1d",
+    });
 
     //for local use only
     res.cookie("adminToken", token, {
       httpOnly: false,
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
-      // sameSite: "None"
-
+      sameSite: "None",
     });
-
-    //   res.cookie("adminToken", token, {
-    //   httpOnly: true,        // Prevent client-side access for security
-    //   secure: true,          // Ensure cookies are only sent over HTTPS
-    //   maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
-    //   sameSite: "Strict",    // Prevent CSRF attacks by restricting cross-site requests
-    // });
 
     return res.status(200).json({
       message: "Login successful",
@@ -75,14 +65,11 @@ export const AdminLogout = async (req, res) => {
   try {
     // res.clearCookie("jwt");
 
-    res.clearCookie("adminToken", {
-     httpOnly: false,
-  secure: true,
-  maxAge: 2 * 24 * 60 * 60 * 1000,
-  sameSite: "None", 
-  path: "/", 
-   // Optional, usually not needed
-   
+    res.cookie("adminToken", "", {
+      httpOnly: false,
+      secure: true, // Change to `true` in production (if using HTTPS)
+      sameSite: "None",
+      expires: new Date(0),
     });
     return res
       .status(200)
@@ -96,31 +83,36 @@ export const AdminLogout = async (req, res) => {
 
 export const ResetAdminPassword = async (req, res) => {
   try {
-   
     const { email, newPassword, confirmPassword } = req.body;
 
     if (!email || !newPassword || !confirmPassword) {
-      return res.status(400).json({ message: "All fields are required", status: false });
+      return res
+        .status(400)
+        .json({ message: "All fields are required", status: false });
     }
 
     if (newPassword !== confirmPassword) {
-      return res.status(400).json({ message: "Passwords do not match", status: false });
+      return res
+        .status(400)
+        .json({ message: "Passwords do not match", status: false });
     }
 
-    const adminUser = await AdminLogin.findOne({email});
+    const adminUser = await AdminLogin.findOne({ email });
     if (!adminUser) {
-      return res.status(404).json({ message: "Admin user not found", status: false });
+      return res
+        .status(404)
+        .json({ message: "Admin user not found", status: false });
     }
-
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     adminUser.password = hashedPassword;
     await adminUser.save();
 
-    return res.status(200).json({ message: "Password reset successful", status: true });
+    return res
+      .status(200)
+      .json({ message: "Password reset successful", status: true });
   } catch (error) {
     console.error("ResetAdminPassword error:", error);
     return res.status(500).json({ message: "Server error", status: false });
   }
 };
-

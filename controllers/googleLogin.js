@@ -38,17 +38,10 @@ export const googleLogin = async (req, res) => {
       httpOnly: false,
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
-      //sameSite: "None", //Prevent CSRF attacks by restricting cross-site requests
-      
+      sameSite: "None", //Prevent CSRF attacks by restricting cross-site requests
     });
 
-    //setcookies token
-    //      res.cookie("googleAuthToken", token, {
-    //   httpOnly: true,        // Prevent client-side access for security
-    //   secure: true,          // Ensure cookies are only sent over HTTPS
-    //   maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
-    //   sameSite: "Strict",    // Prevent CSRF attacks by restricting cross-site requests
-    // });
+  
 
     return res.json({
       message: `Welcome ${user.name}`,
@@ -104,10 +97,11 @@ export const getGoogleProfile = async (req, res) => {
 
 export const googleLogout = async (req, res) => {
   try {
-    res.clearCookie("googleAuthToken", {
+    res.cookie("googleAuthToken", "", {
       httpOnly: false, // Must match original settings
-      secure: false,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "None",
+      expires: new Date(0),
     });
     return res.status(200).json({
       message: "google Logout Successfully",

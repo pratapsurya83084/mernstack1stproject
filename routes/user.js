@@ -6,6 +6,8 @@ import { adminLogin,AdminLogout, ResetAdminPassword } from '../controllers/Admin
 const router=express.Router()
 
 
+router.get("/checkUserexists",Authenticated)
+
 router.post("/adminlogin",adminLogin);
 
 router.post("/adminlogout",AdminLogout);
